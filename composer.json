@@ -1,0 +1,17 @@
+{
+    "name": "tmalb/project",
+    "authors": [
+        {
+            "name": "adamzoo123",
+            "email": "tmalbayati0@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+        "symfony/yaml": "^5.4"
+    }
+}
