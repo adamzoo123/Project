@@ -34,11 +34,11 @@ file_put_contents('../project/frontend/fields/file.yaml', $yaml);
 // echo "</table>";
 
 
-$getContent = file_get_contents('../project/frontend/fields/file.yaml', true);
-$parseContent = Yaml::parse($getContent, Yaml::PARSE_OBJECT);
-foreach($parseContent as $content){
-    echo $content['name'];
-}
+// $getContent = file_get_contents('../project/frontend/fields/file.yaml', true);
+// $parseContent = Yaml::parse($getContent, Yaml::PARSE_OBJECT);
+// foreach($parseContent as $content){
+//     echo $content['name'];
+// }
 
 
 ?>
