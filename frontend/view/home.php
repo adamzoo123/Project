@@ -1,50 +1,18 @@
-<?php include("../project/frontend/view/header.php"); 
-require_once 'vendor/autoload.php';
+<!-- <h1>Home</h1> -->
+<?php  require_once("backend/model/Data.php");
+// use \App\backend\model\Data; 
 
-use Symfony\Component\Yaml\Yaml;
+$data = Data::getData();
 
+
+foreach($data as $content){
+}
 ?>
-
-<?php
-
-$query = $conn->prepare("SELECT * FROM mitarbeiter");
-$query->execute();
-$result = $query->fetchall();
-$yaml = Yaml::dump($result);
-file_put_contents('../project/frontend/fields/file.yaml', $yaml);
-
-// echo 
-// "<table class='table'>
-// <tr>
-// <th>name</th>
-// <th>vorname</th>
-// <th>gebdatum</th>
-// </tr>"
-// ;
-
-// foreach($result as $row)
-// {
-// echo "<tr>";
-// echo "<td>" . $row['name'] . "</td>";
-// echo "<td>" . $row['vorname'] . "</td>";
-// echo "<td>" . $row['gebdatum'] . "</td>";
-// }
-
-// echo "</tr>";
-// echo "</table>";
-
-
-// $getContent = file_get_contents('../project/frontend/fields/file.yaml', true);
-// $parseContent = Yaml::parse($getContent, Yaml::PARSE_OBJECT);
-// foreach($parseContent as $content){
-//     echo $content['name'];
-// }
-
-
-?>
-
-
-
-
-
-<?php include("../project/frontend/view/footer.php"); ?>
+<div class="plugin-card-double">
+    <div class="col col-1">
+        <?php echo $content['data'] ?>        
+    </div>
+    <div class="col col-2">
+        <?php echo $content['data_1'] ?>
+    </div>
+</div>

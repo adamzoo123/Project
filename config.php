@@ -1,25 +1,16 @@
 <?php
 
-
-// if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-// $url = "https://";   
-// else  
-// $url = "http://";   
-
-// $url.= $_SERVER['HTTP_HOST'];   
-
-// $url.= $_SERVER['REQUEST_URI'];    
-
-
+// define('BASE_PATH', realpath(dirname(__FILE__)));
 
    $dbhost = "localhost";
    $dbuser = "root";
-   $dbpassword = "passwor";
-   $dbname = "employee";
+   $dbpassword = "";
+   $dbname = "project";
 
    try {
     $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
-    //echo "Connected to $dbname at $dbhost successfully.";
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    // echo "Connected to $dbname at $dbhost successfully.";
 } catch (PDOException $pe) {
     die("Could not connect to the database $dbname :" . $pe->getMessage());
 }

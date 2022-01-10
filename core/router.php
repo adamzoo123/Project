@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 class Router{
 
     protected array $routes = [];
@@ -19,31 +21,36 @@ class Router{
         $callback = $this->routes[$method][$path] ?? false;
         if($callback === false){
             Application::$app->response->setStatusCode(404);
-            echo "Page Not Found";
+            return $this->renderView("_404");
         }
 
         if(is_string($callback)){
             return $this->renderView($callback);
         }
       
-    //    return call_user_func($callback);
+       return call_user_func($callback);
     }
 
-    public function renderView($view){
+    public function renderView($view, $params = []){
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $params);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    public function renderContent($viewContent){
+        $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
     public function layoutContent(){
         ob_start();
-        include_once Application::$ROOT_DIR . "/project/frontend/view/home.php";
+        include_once Application::$ROOT_DIR . "/frontend/view/layout.php";
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view){
+    protected function renderOnlyView($view, $params){
         ob_start();
-        include_once Application::$ROOT_DIR . "/project/frontend/view/$view.php";
+        include_once Application::$ROOT_DIR . "/frontend/view/$view.php";
         return ob_get_clean();
     }
 
